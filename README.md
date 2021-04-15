@@ -1,11 +1,22 @@
 # Amazon-Scraper
 A simple Amazon Scraper to extract product  and prices from Amazon.it using Node.js.
 
+Features
+Extract product data from the search result(by category, by country)
+Extract lots of signle product data by using ASIN id
+Extract product reviews data by using ASIN id
+Extract list of categories
+Is supporting all available Amazon Marketplaces
+Sort result by sponsored products only
+Sorts result by discounted products only
+Result can be saved to the JSON/CSV files
+You can scrape up to 500 produtcs and 1000 reviews
 
-Amazon Product Page Scraper 
 
 
-Usage
+
+
+# Usage
 From a terminal
 
 Clone this project git clone https://github.com/Chry1911/Amazon-Scraper.git and cd into it cd amazon-scraper
