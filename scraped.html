@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <style>
+       
+            #table {
+                font-family: Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            #table td, #table th {
+                border: 1px solid rgb(0, 0, 0);
+                padding: 8px;
+            }
+
+            #table tr:nth-child(even){background-color: #ffffff;}
+
+            #table tr:hover {background-color: rgb(136, 134, 134);}
+
+            #table th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: rgba(239,68,68);
+                color: rgb(0, 0, 0);
+
+                
+            }
+
+
+    </style>
+
+    <table id="table" class="table table-condensed">
+
+    </table>
+
+<script type="text/javascript">
+
+function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+
+	
+function createTable(data){
+	$('#content').append('<table id="jsonTable"><thead><tr></tr></thead><tbody></tbody></table>');
+	
+    $.each(Object.keys(data[0]), function(index, key){
+        $('#jsonTable thead tr').append('<th>' + key + '</th>');
+    });	
+    $.each(data, function(index, jsonObject){     
+        if(Object.keys(jsonObject).length > 0){
+        var tableRow = '<tr>';
+        $.each(Object.keys(jsonObject), function(i, key){
+            tableRow += '<td>' + jsonObject[key] + '</td>';
+        });
+        tableRow += "</tr>";
+        $('#jsonTable tbody').append(tableRow);
+        }
+    });
+}
+
+$(document).ready(function(){
+    /*
+    readTextFile("http://localhost://amazon/scrapedata/informatica.json", function(text){
+       var data = JSON.parse(text);
+       //alert(data);
+       createTable(data);
+    });
+    */
+
+    $.ajax({
+        url: "http://localhost://amazon/scrapedata/informatica.json", //the path of the file is replaced by File.json
+        dataType: "json",
+        success: function (response) {
+            console.log(response); //it will return the json array
+
+            $("#table").html("");
+            for (var i = 0; i < response.length; i++) {
+                var trheader = "<tr>";
+                var th1 = "<th>" + "Immagine Prodotto" + "</th>"
+                var th2 = "<th>" + "Nome Prodotto" + "</th>"
+                var th3 = "<th>" + "Prezzo" + "</th>"
+                var closeheader = "</tr>";
+
+                var tr = "<tr>";
+                var td3 = "<td><img src='" + response[i].image + "' style='width:80px;height:80px:'/></td>";
+                var td4 = "<td>" + response[i].name + "</td>";
+                var td5 = "<td>" + response[i].price + "</td></tr>";
+                
+                
+                $("#table").append(trheader + th1 + th2 + th3 + closeheader + tr +  td3 + td4 + td5);
+
+            }
+
+        }
+
+    });
+    
+});
+</script>
+
+</body>
+</html>
