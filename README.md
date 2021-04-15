@@ -21,3 +21,10 @@ To show the result of the web scraping, in the same folder if you launch this we
 you can see the scraped object from amazon in a web HTML table.
 
 
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+<input type="hidden" name="business" value="cortesechristian@hotmail.com" />
+<input type="hidden" name="item_name" value="Donazione volontaria" />
+<input type="hidden" name="currency_code" value="EUR" />
+<input type="image" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_IT/i/scr/pixel.gif" width="1" height="1" />
+</form>
